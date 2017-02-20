@@ -1,7 +1,7 @@
 {
   "name": "wdi-project-2-wshimei",
   "version": "1.0.0",
-  "description": "This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.",
+  "description": "A shared shopping list between family members, room-mates or house-mates.",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app",
@@ -21,6 +21,9 @@
     "body-parser": "^1.16.1",
     "ejs": "^2.5.6",
     "express": "^4.14.1",
+    "express-ejs-layouts": "^2.2.0",
+    "express-session": "^1.15.1",
+    "method-override": "^2.3.7",
     "mongoose": "^4.8.3",
     "nodemon": "^1.11.0"
   }

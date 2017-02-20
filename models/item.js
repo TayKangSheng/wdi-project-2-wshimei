@@ -1,8 +1,13 @@
 const mongoose = require('mongoose')
 
 var ItemSchema = new mongoose.Schema({
+  status: {
+    type: String,
+    enum: ['bought', 'unbought'],
+    default: 'unbought'
+  },
   name: {type: String, require: true},
-  count: Number,
+  count: {type: Number, require: true},
   budget: Number,
   remark: String
 })
