@@ -1,0 +1,27 @@
+{
+  "name": "wdi-project-2-wshimei",
+  "version": "1.0.0",
+  "description": "This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wdi-sg/wdi-project-2-wshimei.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wdi-sg/wdi-project-2-wshimei/issues"
+  },
+  "homepage": "https://github.com/wdi-sg/wdi-project-2-wshimei#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "ejs": "^2.5.6",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.3",
+    "nodemon": "^1.11.0"
+  }
+}
