@@ -1,6 +1,3 @@
-const express = require('express')
-const router = express.Router()
-
 const User = require('../models/user')
 
 let userController = {
@@ -9,7 +6,7 @@ let userController = {
       if (err) {
         return err
       }
-      res.render('signup')
+      res.render('users/signup')
     })
   },
 
@@ -23,7 +20,7 @@ let userController = {
         console.error(err)
         return
       }
-      res.render('signup')
+      res.redirect('/')
     })
   },
 
@@ -32,7 +29,7 @@ let userController = {
       if (err) {
         return err
       }
-      res.render('show')
+      res.render('users/show')
     })
   }
 }
