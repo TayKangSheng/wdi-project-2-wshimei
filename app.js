@@ -4,6 +4,11 @@ const express = require('express')
 const app = express()
 const ejsLayouts = require('express-ejs-layouts')
 const session = require('express-session')
+const passport = require('passport')
+const methodOverride = require('method-override')
+const flash = require('connect-flash')
+const cookieParser = require('cookie-parser')
+const MongoStore = require('connect-mongo')(session)
 
 const userRouter = require('./routes/user_router')
 const categoryRouter = require('./routes/category_router')
@@ -13,20 +18,33 @@ const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.Promise = global.Promise
 
+app.use(cookieParser(process.env.SESSION_SECRET))
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: new MongoStore({
+    url: process.env.MONGODB_URI,
+    autoReconnect: true
+  })
 }))
 
+app.use(passport.initialize())
+app.use(passport.session())
+require('./config/passportConfig')(passport)
+
+app.use(flash())
+app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({ extended: true }))
-app.set('view engine', 'ejs')
 app.use(ejsLayouts)
+app.set('view engine', 'ejs')
+
 app.use('/users', userRouter)
 app.use('/categories', categoryRouter)
 app.use('/items', itemRouter)
+
 app.get('/', (req, res) => {
-  res.send('WELLOW HOMEPAGE')
+  res.render('homepage')
 })
 
 let port = 4001

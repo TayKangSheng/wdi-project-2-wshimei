@@ -2,9 +2,11 @@ const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
 
 var UserSchema = new mongoose.Schema({
-  email: {type: String, require: [true, 'Email required.']},
-  nickname: {type: String, require: [true, 'Please provide a nickname.']},
-  password: {type: String, require: [true, 'Password required']}
+  local: {
+    email: {type: String, require: [true, 'Email required.']},
+    nickname: {type: String, require: [true, 'Please provide a nickname.']},
+    password: {type: String, require: [true, 'Password required']}
+  }
 })
 
 UserSchema.statics.encrypt = function (password) {
