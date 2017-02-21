@@ -25,15 +25,15 @@ let userController = {
       }
       res.render('signup')
     })
-  // },
-  //
-  // show: (req, res) => {
-  //   User.findById(req.params.id, function (err, output) {
-  //     if (err) {
-  //       return err
-  //     }
-  //     res.render('show')
-  // })
+  },
+
+  show: (req, res) => {
+    User.findById(req.params.id, function (err, output) {
+      if (err) {
+        return err
+      }
+      res.render('show')
+    })
   }
 }
 
