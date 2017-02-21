@@ -14,7 +14,7 @@ let userController = {
     User.create({
       email: req.body.email,
       nickname: req.body.nickname,
-      password: req.body.password
+      password: User.encrypt(req.body.password)
     }, function (err, output) {
       if (err) {
         console.error(err)

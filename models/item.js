@@ -6,8 +6,8 @@ var ItemSchema = new mongoose.Schema({
     enum: ['bought', 'unbought'],
     default: 'unbought'
   },
-  name: {type: String, require: true},
-  count: {type: Number, require: true},
+  name: {type: String, require: [true, 'Item required.']},
+  count: Number,
   budget: Number,
   remark: String
 })
