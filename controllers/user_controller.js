@@ -1,4 +1,4 @@
-const User = require('../models/user')
+// const User = require('../models/user')
 const passport = require('passport')
 require('../config/passportConfig')
 
@@ -9,27 +9,22 @@ let userController = {
     })
   },
   create: (req, res, next) => {
-    User.create({
-      local: {
-        email: req.body.email,
-        nickname: req.body.nickname,
-        password: User.encrypt(req.body.password)
-      },
-      function (err, output) {
-        if (err) {
-          return next(err)
-        }
-        res.redirect('/')
-      }
+    var loginStrategy = passport.authenticate('local-signup', {
+      successRedirect: '/categories/list',
+      failureRedirect: '/users/signup',
+      failureFlash: true
     })
+    return loginStrategy(req, res)
   },
   loginPage: (req, res, next) => {
-    res.render('users/login')
+    res.render('users/login', {
+      flash: req.flash('flash')[0]
+    })
   },
   login: (req, res, next) => {
     var loginStrategy = passport.authenticate('local-login', {
-      successRedirect: '/',
-      failureRedirect: '/login',
+      successRedirect: '/categories/list',
+      failureRedirect: '/users/login',
       failureFlash: true
     })
     return loginStrategy(req, res)

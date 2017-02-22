@@ -45,10 +45,9 @@ module.exports = function (passport) {
     console.log('test')
     User.findOne({ 'local.email': email }, function (err, foundUser) {
       if (foundUser) {
-        console.log('the same user with same email found')
         return done(null, false, req.flash('flash', {
           type: 'warning',
-          message: 'This email is already used'
+          message: 'This email is already in use'
         }))
       } else {
         let newUser = new User({

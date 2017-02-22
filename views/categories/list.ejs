@@ -1,20 +1,12 @@
-<h1>CAT LIST</h1>
+<h3>Categories</h3>
 
 <div class="container-fluid">
   <div class="list-group">
-    <a href="#" class="list-group-item default">
-      <h4 class="list-group-item-heading">List group item 1</h4>
-      <p class="list-group-item-text">...</p>
-    </a>
-
-    <a href="#" class="list-group-item default">
-      <h4 class="list-group-item-heading">List group item 2</h4>
-      <p class="list-group-item-text">...</p>
-    </a>
-
-    <a href="#" class="list-group-item default">
-      <h4 class="list-group-item-heading">List group item 3</h4>
-      <p class="list-group-item-text">...</p>
-    </a>
+    <% categories.forEach(function(category) { %>
+      <a href="<%= category._id %>" class="list-group-item default">
+        <h4 class="list-group-item-heading"><%= category.name %> </h4>
+        <p class="list-group-item-text">Created by: </p>
+      </a>
+    <% }) %>
   </div>
 </div>

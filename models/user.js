@@ -14,7 +14,7 @@ UserSchema.statics.encrypt = function (password) {
 }
 
 UserSchema.methods.validPassword = function (givenPassword) {
-  return bcrypt.compareSync(givenPassword, this.password)
+  return bcrypt.compareSync(givenPassword, this.local.password)
 }
 
 var User = mongoose.model('User', UserSchema)
