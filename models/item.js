@@ -7,8 +7,8 @@ var ItemSchema = new mongoose.Schema({
     default: 'unbought'
   },
   name: {type: String, require: [true, 'Item required.']},
-  count: Number,
-  budget: Number,
+  quantity: Number,
+  budget: String,
   remark: String
 })
 

@@ -1,4 +1,17 @@
 <h3><%= item.name %></h3>
 
+<p>Quantity: <%= item.quantity %></p>
+<p>Budget: <%= item.budget %></p>
+<p>Remark: <%= item.remark %></p>
+
+
+<div class="container">
+
+  <a href="/items/<%=item.id%>/edit" class="btn btn-info col-md-2">Edit</a>
+
+  <form method="POST" action="/items/<%=item.id%>?_method=DELETE">
+  <button class="btn btn-danger col-md-2" type="submit">Delete </button>
+
+</div>
 
 <pre><%=item%></pre>
