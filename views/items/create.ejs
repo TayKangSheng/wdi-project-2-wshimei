@@ -1,31 +1,23 @@
-<div class="container">
-  <div class="page-header">
-    <h1>List new item</h1>
-  </div>
-</div>
-
-<%include ../partials/header %>
-
-<div class="container">
+<div class="container-fluid">
 
 <form action= "/items/create" method="post">
   <div class="form-group">
-    <label for="name">Name</label>
-    <input type="name" class="form-control" name="name" id="name" placeholder="Name">
+    <label for="name">Item</label>
+    <input type="name" class="form-control" name="name" id="name">
   </div>
   <div class="form-group">
-    <label for="count">Count</label>
-    <input type="number" class="form-control" name="count" id="count" placeholder="Quantity">
+    <label for="count">Quantity</label>
+    <input type="number" class="form-control" name="count" id="count">
   </div>
 
   <label for="budget">Budget</label>
   <div class="form-group">
-    <input type="number" aria-label="Amount (to the nearest dollar)" class="form-control" name="budget" id="budget" placeholder="Budget">
+    <input type="number" aria-label="Amount (to the nearest dollar)" class="form-control" name="budget" id="budget">
   </div>
 
   <div class="form-group">
     <label for="remark">Remark</label>
-    <input type="text" class="form-control" name="remark" id="remark" placeholder="Remark">
+    <input type="text" class="form-control" name="remark" id="remark">
   </div>
 
   <input type="submit" class="btn btn-default">

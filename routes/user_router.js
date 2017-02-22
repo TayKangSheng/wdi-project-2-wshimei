@@ -1,19 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const userController = require('../controllers/user_controller')
+// const passport = require('passport')
 
-router.get('/', userController.list)
-
-router.get('/new', userController.new)
-
-router.get('/:id', userController.listOne)
-ç
-router.get('/:id/edit', userController.edit)
-
-router.post('/', userController.create)
-
-router.put('/:id', userController.update)
-
-router.delete('/:id', userController.delete)
+router.get('/signup', userController.new)
+router.post('/signup', userController.create)
+router.get('/login', userController.loginPage)
+router.post('/login', userController.login)
 
 module.exports = router

@@ -1,6 +1,5 @@
-var passport = require('passport')
+const passport = require('passport')
 require('../config/passportConfig')
-var User = require('../models/user')
 const express = require('express')
 const router = express.Router()
 

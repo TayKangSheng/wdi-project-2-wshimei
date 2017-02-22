@@ -1,50 +1,38 @@
-var passport = require('passport')
-require('../config/passportConfig')
 const User = require('../models/user')
+const passport = require('passport')
+require('../config/passportConfig')
 
 let userController = {
-  list: (req, res, next) => {
-    User.find({}, function (err, output) {
-      if (err) {
-        return err
-      }
-      res.render('users/signup')
+  new: (req, res, next) => {
+    res.render('users/signup', {
+      flash: req.flash('flash')[0]
     })
   },
-
   create: (req, res, next) => {
     User.create({
-      email: req.body.email,
-      nickname: req.body.nickname,
-      password: User.encrypt(req.body.password)
-    }, function (err, output) {
-      if (err) {
-        console.log('An error occurred: ' + err)
+      local: {
+        email: req.body.email,
+        nickname: req.body.nickname,
+        password: User.encrypt(req.body.password)
+      },
+      function (err, output) {
+        if (err) {
+          return next(err)
+        }
         res.redirect('/')
-      // } else {
-      //   passport.authenticate('local', {
-      //     successRedirect: '/'
-      //   })(req, res)
       }
     })
   },
-
-  show: (req, res) => {
-    User.findById(req.params.id, function (err, output) {
-      if (err) {
-        return err
-      }
-      res.render('users/show')
-    })
+  loginPage: (req, res, next) => {
+    res.render('users/login')
   },
-
-  listOne: (req, res, next) => {
-    User.findById(req.params.id, function (err, output) {
-      if (err) {
-        return next(err)
-      }
-      res.render('users/show')
+  login: (req, res, next) => {
+    var loginStrategy = passport.authenticate('local-login', {
+      successRedirect: '/',
+      failureRedirect: '/login',
+      failureFlash: true
     })
+    return loginStrategy(req, res)
   }
 }
 
