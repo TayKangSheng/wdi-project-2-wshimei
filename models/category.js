@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 
 var CategorySchema = new mongoose.Schema({
   name: {type: String, require: [true, 'Category name required.']},
-  color: String
+  color: String,
+  items: [{type: mongoose.Schema.Types.ObjectId, ref: 'item'}]
 })
 
 var Category = mongoose.model('Category', CategorySchema)

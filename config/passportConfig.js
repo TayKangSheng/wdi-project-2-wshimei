@@ -56,7 +56,7 @@ module.exports = function (passport) {
             password: User.encrypt(password)
           }
         })
-        newUser.save(function (err, output) {
+        newUser.save(function (err, newUser) {
           return done(null, newUser, req.flash('flash', {
             type: 'success',
             message: 'New User Created ' + newUser.local.email

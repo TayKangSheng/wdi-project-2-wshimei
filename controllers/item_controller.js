@@ -1,36 +1,45 @@
 const Item = require('../models/item')
+const Category = require('../models/category')
 
 let itemController = {
-  list: (req, res) => {
-    Item.find({}, function (err, output) {
+  new: (req, res, next) => {
+    Category.find({}, function (err, foundCategories) {
       if (err) {
-        return err
+        return next(err)
       }
-      res.render('items/create')
+      res.render('items/add', {allCategories: foundCategories})
     })
   },
 
-  create: (req, res) => {
+  create: (req, res, next) => {
     Item.create({
       name: req.body.name,
       count: req.body.count,
       budget: req.body.budget,
       remark: req.body.remark
-    }, function (err, output) {
+    }, function (err, createdItem) {
       if (err) {
-        console.error(err)
-        return
+        return next(err)
       }
-      res.redirect('/')
+      console.log(createdItem)
+      var requestId = req.body.id
+      Category.findById(req.body.id, function (err, foundCat) {
+        if (err) throw err
+        foundCat.items.push(createdItem)
+        
+        console.log(foundCat.items)
+      })
+
+      res.redirect('/categories/list')
     })
   },
 
-  show: (req, res) => {
+  show: (req, res, next) => {
     Item.findById(req.params.id, function (err, output) {
       if (err) {
-        return err
+        return next(err)
       }
-      res.redirect('/')
+      res.render('items/show', {item: output})
     })
   }
 }

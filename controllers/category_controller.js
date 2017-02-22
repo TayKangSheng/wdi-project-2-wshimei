@@ -1,4 +1,5 @@
 const Category = require('../models/category')
+// const Item = require('../models/item')
 
 let categoryController = {
   new: (req, res, next) => {
@@ -13,7 +14,7 @@ let categoryController = {
       if (err) {
         return next(err)
       }
-      res.redirect('categories/list')
+      res.redirect('/categories/list')
     })
   },
 
@@ -27,12 +28,15 @@ let categoryController = {
   },
 
   show: (req, res, next) => {
-    Category.findById(req.params.id, function (err, output) {
-      if (err) {
-        return next(err)
-      }
-      res.render('categories/show', {category: output})
-    })
+    Category.findById(req.params.id)
+            .populate('item')
+            .exec(function (err, output) {
+              if (err) {
+                return next(err)
+              }
+
+              res.render('categories/show', {category: output})
+            })
   }
 }
 
