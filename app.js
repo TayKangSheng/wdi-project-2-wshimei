@@ -22,12 +22,11 @@ app.use(cookieParser(process.env.SESSION_SECRET))
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: true
-  // store: new MongoStore({
-  //   url: process.env.MONGODB_URI,
-  //   autoReconnect: true
-  // })
-
+  saveUninitialized: true,
+  store: new MongoStore({
+    url: process.env.MONGODB_URI,
+    autoReconnect: true
+  })
 }))
 
 app.use(passport.initialize())
@@ -58,7 +57,7 @@ if (app.get('env') === 'development') {
   })
 }
 
-let port = process.env.PORT || 4001
+let port = process.env.PORT || 4000
 app.listen(port, function () {
   console.log('Shopping List is running on ' + port)
 })
