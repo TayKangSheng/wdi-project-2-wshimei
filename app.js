@@ -22,11 +22,12 @@ app.use(cookieParser(process.env.SESSION_SECRET))
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: true,
-  store: new MongoStore({
-    url: process.env.MONGODB_URI,
-    autoReconnect: true
-  })
+  saveUninitialized: true
+  // store: new MongoStore({
+  //   url: process.env.MONGODB_URI,
+  //   autoReconnect: true
+  // })
+
 }))
 
 app.use(passport.initialize())
