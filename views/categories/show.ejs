@@ -3,3 +3,13 @@
 <h4><%= category.items %></h4>
 
 <pre><%=category%></pre>
+
+
+<div class="container">
+
+  <a href="/categories/<%=category.id%>/edit" class="btn btn-info col-md-2">Edit</a>
+
+  <form method="POST" action="/categories/<%=category.id%>?_method=DELETE">
+  <button class="btn btn-danger col-md-2" type="submit">Delete </button>
+
+</div>

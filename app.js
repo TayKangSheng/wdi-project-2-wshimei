@@ -47,6 +47,16 @@ app.get('/', (req, res) => {
   res.render('homepage')
 })
 
+if (app.get('env') === 'development') {
+  app.use(function (err, req, res, next) {
+    res.status(err.status || 500)
+    res.render('error', {
+      message: err.message,
+      error: err
+    })
+  })
+}
+
 let port = 4001
 app.listen(port, function () {
   console.log('Shopping List is running on ' + port)
