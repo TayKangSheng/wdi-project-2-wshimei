@@ -57,7 +57,7 @@ if (app.get('env') === 'development') {
   })
 }
 
-let port = 4001
+let port = process.env.PORT || 4001
 app.listen(port, function () {
   console.log('Shopping List is running on ' + port)
 })
