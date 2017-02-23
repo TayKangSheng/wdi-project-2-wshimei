@@ -1,9 +1,16 @@
 <h3><%= category.name %></h3>
 
-<h4><%= category.items %></h4>
+<ul class="list-group">
+    <% category.items.forEach(item => { %>
+      <li class="list-group-item" >
+        <a href="/items/<%=item%>">
+        <%=  %>
+        </a>
+      </li>
+    <%})%>
+</ul>
 
 <pre><%=category%></pre>
-
 
 <div class="container">
 

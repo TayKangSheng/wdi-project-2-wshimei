@@ -4,8 +4,11 @@
     <% if (categories.length !== 0) {%>
       <div class="list-group">
     <% categories.forEach(function(category) { %>
+
       <a href="<%= category._id %>" class="list-group-item default">
+        <span class="badge"><%=category.items.length%></span>
         <h4 class="list-group-item-heading"><%= category.name %> </h4>
+
         <p class="list-group-item-text">Created by: </p>
       </a>
       </div>

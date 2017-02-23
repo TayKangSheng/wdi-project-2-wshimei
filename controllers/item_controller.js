@@ -21,14 +21,12 @@ let itemController = {
       if (err) {
         return next(err)
       }
-      console.log(createdItem)
-      Category.findById(req.body.id, function (err, foundCat) {
+      Category.findByIdAndUpdate(req.body.id, {$push: {'items': createdItem}}, function (err) {
         if (err) throw err
-        foundCat.items.push(createdItem)
-        console.log(foundCat.items)
+        return next(err)
       })
 
-      res.redirect('/categories/list')
+      res.redirect('/categories/' + req.body.id)
     })
   },
 
