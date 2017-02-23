@@ -22,11 +22,9 @@ let itemController = {
         return next(err)
       }
       console.log(createdItem)
-      var requestId = req.body.id
       Category.findById(req.body.id, function (err, foundCat) {
         if (err) throw err
         foundCat.items.push(createdItem)
-
         console.log(foundCat.items)
       })
 
@@ -54,12 +52,21 @@ let itemController = {
   },
 
   update: (req, res, next) => {
-    Item.findOneAndUpdate(req.params.id, function (err, foundItem) {
-      if (err) {
-        return next(err)
-      }
-      res.redirect('/items/' + foundItem.id)
-    })
+    Item.findOneAndUpdate(req.params.id, {
+      name: req.body.name,
+      quantity: req.body.quantity,
+      budget: req.body.budget,
+      remark: req.body.remark
+    },
+      {
+        new: true
+      },
+      function (err, foundItem) {
+        if (err) {
+          return next(err)
+        }
+        res.redirect('/items/' + foundItem.id)
+      })
   },
 
   delete: (req, res, next) => {

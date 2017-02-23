@@ -52,12 +52,16 @@ let categoryController = {
     Category.findOneAndUpdate(req.params.id, {
       name: req.body.name,
       color: req.body.color
-    }, function (err, updatedCat) {
-      if (err) {
-        return next(err)
-      }
-      res.redirect('/categories/' + updatedCat.id)
-    })
+    },
+      {
+        new: true
+      },
+      function (err, updatedCat) {
+        if (err) {
+          return next(err)
+        }
+        res.redirect('/categories/' + updatedCat.id)
+      })
   },
 
   delete: (req, res, next) => {

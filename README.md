@@ -1,8 +1,6 @@
 # Your Project Name
 
-[Heroku](https://cryptic-peak-63193.herokuapp.com/)
-
-This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.
+A small group shopping list designed for groups such as family, room-mates, close neighbour, etc.
 
 ## Getting Started
 
@@ -43,13 +41,12 @@ Code example
 
 ## Live Version
 
-Where is this deployed online (github pages, heroku etc), give us the link and any access details we need.
+[Heroku](https://cryptic-peak-63193.herokuapp.com/)
 
 ## Built With
 
-What did you use to build it, list the technologies, plugins, gems, packages etc.
-
-* [jQuery](http://jquery.com/) - jQuery for example is something you likely used
+Node.js
+Plugins:
 
 ## Workflow
 
@@ -57,10 +54,8 @@ Did you write user stories, draw wireframes, use task tracking, produce ERDs? Di
 
 ## Authors
 
+Shimei Wong
+
 Did you collaborate with others on this project, list them here
 
-* **John McClain** - *Responsible for keeping vests white* - [GithubUserName](https://github.com/GithubUserName)
-
 ## Acknowledgments
-
-* Hat tip to anyone who's code was used, for example [this was a useful starting point for creating this template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).

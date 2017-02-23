@@ -9,8 +9,6 @@ const methodOverride = require('method-override')
 const flash = require('connect-flash')
 const cookieParser = require('cookie-parser')
 const MongoStore = require('connect-mongo')(session)
-let port = process.env.PORT || 4000
-
 
 const userRouter = require('./routes/user_router')
 const categoryRouter = require('./routes/category_router')
@@ -59,4 +57,7 @@ if (app.get('env') === 'development') {
   })
 }
 
-app.listen(port)
+let port = process.env.PORT || 4003
+app.listen(port, function () {
+  console.log('Shopping List is running on port ' + port)
+})
