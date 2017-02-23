@@ -1,9 +1,11 @@
 const Category = require('../models/category')
-// const Item = require('../models/item')
+const Item = require('../models/item')
 
 let categoryController = {
   new: (req, res, next) => {
-    res.render('categories/new')
+    res.render('categories/new', {
+      flash: req.flash('flash')[0]
+    })
   },
 
   create: (req, res, next) => {
@@ -29,7 +31,7 @@ let categoryController = {
 
   show: (req, res, next) => {
     Category.findById(req.params.id)
-            .populate('item')
+            .populate('items')
             .exec(function (err, output) {
               if (err) {
                 return next(err)

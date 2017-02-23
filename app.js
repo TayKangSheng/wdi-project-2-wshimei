@@ -39,11 +39,39 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(ejsLayouts)
 app.set('view engine', 'ejs')
 
-app.use('/users', userRouter)
-app.use('/categories', categoryRouter)
-app.use('/items', itemRouter)
+// blocks those who are not logged in
+function isNotLoggedIn (req, res, next) {
+  if (req.isAuthenticated()) return next()
 
-app.get('/', (req, res) => {
+  req.flash('flash', {
+    type: 'danger',
+    message: 'Restricted Page: Please login'
+  })
+  return res.redirect('/')
+}
+
+// blocked those who are logged in
+function isLoggedIn (req, res, next) {
+  if (req.isAuthenticated() === false) return next()
+
+  req.flash('flash', {
+    type: 'danger',
+    message: 'You are already logged in'
+  })
+  return res.redirect('/categories/list')
+}
+
+app.use(function (req, res, next) {
+  res.locals.user = req.user
+  res.locals.isAuthenticated = req.isAuthenticated()
+  next()
+})
+
+app.use('/users', userRouter)
+app.use('/categories', isNotLoggedIn, categoryRouter)
+app.use('/items', isNotLoggedIn, itemRouter)
+
+app.get('/', isLoggedIn, (req, res) => {
   res.render('homepage')
 })
 

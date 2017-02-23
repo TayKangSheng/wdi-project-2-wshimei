@@ -53,6 +53,7 @@ module.exports = function (passport) {
         let newUser = new User({
           local: {
             email: email,
+            nickname: req.nickname,
             password: User.encrypt(password)
           }
         })

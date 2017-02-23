@@ -28,6 +28,11 @@ let userController = {
       failureFlash: true
     })
     return loginStrategy(req, res)
+  },
+
+  logout: (req, res, next) => {
+    req.logout()
+    res.redirect('/')
   }
 }
 
