@@ -1,20 +1,21 @@
 <h3><%= category.name %></h3>
 
 <div class="list-group">
+  <% if (category.items.length !== 0) {%>
     <% category.items.forEach(function(itemList) { %>
       <a href="/items/<%=itemList.id%>" class="list-group-item default">
         <%= itemList.status%> <%= itemList.name %>
       </a>
+
     <%})%>
+  <% } else { %>
+    <a href="/items/add" class= "btn btn-info">Add Item</a>
+  <% } %>
 </div>
 
-<pre><%=category.items%></pre>
-
-<div class="container">
-
-  <a href="/categories/<%=category.id%>/edit" class="btn btn-info col-md-2">Edit</a>
+  <a href="/categories/<%=category.id%>/edit" class="btn btn-info col-md-2">Edit Category</a>
 
   <form method="POST" action="/categories/<%=category.id%>?_method=DELETE">
-  <button class="btn btn-danger col-md-2" type="submit">Delete </button>
+    <button class="btn btn-danger col-md-2" type="submit">Delete Category</button>
 
-</div>
+<pre><%=category.items%></pre>

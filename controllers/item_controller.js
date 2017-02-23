@@ -45,7 +45,6 @@ let itemController = {
         return next(err)
       }
       res.render('items/edit', {foundItemId: output})
-      console.log(output)
     })
   },
 
@@ -54,7 +53,8 @@ let itemController = {
       name: req.body.name,
       quantity: req.body.quantity,
       budget: req.body.budget,
-      remark: req.body.remark
+      remark: req.body.remark,
+      status: req.body.status
     },
       {
         new: true
@@ -72,11 +72,12 @@ let itemController = {
       if (err) {
         return next(err)
       }
+
       req.flash('flash', {
         type: 'warning',
         message: 'Deleted an item'
       })
-      res.redirect('/items/' + req.body.id)
+      res.redirect('/categories/list')
     })
   }
 }

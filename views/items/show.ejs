@@ -5,14 +5,27 @@
 <p>Remark: <%= item.remark %></p>
 <p>Status: <%= item.status %></p>
 
+<div class="">
 
-<div class="container">
+
+
+<% if( item.status === 'unbought') {%>
+  <a class="btn btn-success" href="/items/<%=item.id%>?status=bought">
+    Bought
+  </a>
+<% } else { %>
+  <a class="btn btn-danger" href="/items/<%=item.id%>?status=unbought">
+    Unbought
+  </a>
+<% }%>
+
+</div>
+<br><br>
 
   <a href="/items/<%=item.id%>/edit" class="btn btn-info col-md-2">Edit</a>
 
   <form method="POST" action="/items/<%=item.id%>?_method=DELETE">
   <button class="btn btn-danger col-md-2" type="submit">Delete</button>
 
-</div>
 
 <pre><%=item%></pre>

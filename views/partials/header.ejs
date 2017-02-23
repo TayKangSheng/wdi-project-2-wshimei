@@ -10,7 +10,7 @@
 
       <div class="col-md-1">
         <a href="/">
-          <button type="button" class="btn btn-info btn-lg">
+          <button type="button" class="btn btn-info btn-lg" data-toggle="tooltip" data-placement="bottom" title="Home">
             <span class="glyphicon glyphicon-home" aria-hidden="true" action></span>
           </button>
         </a>
@@ -20,13 +20,13 @@
       <%=user.local.email%>
 
         <a href="/items/add">
-          <button type="button" class="btn btn-info btn-lg" align="right">
+          <button type="button" class="btn btn-info btn-lg" align="right" data-toggle="tooltip" data-placement="bottom" title="Add item">
             <span class="glyphicon glyphicon-plus" aria-hidden="true" action></span>
           </button>
         </a>
 
         <a href="/users/logout">
-          <button type="button" class="btn btn-info btn-lg" align="right">
+          <button type="button" class="btn btn-info btn-lg" align="right" data-toggle="tooltip" data-placement="bottom" title="Logout">
             <span class="glyphicon glyphicon-log-out" aria-hidden="true" action></span>
           </button>
         </a>
