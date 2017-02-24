@@ -2,6 +2,7 @@
 
 <div class="list-group">
   <% if (category.items.length !== 0) {%>
+
     <% category.items.forEach(function(itemList) { %>
       <a href="/items/<%=itemList.id%>" class="list-group-item default">
         <%= itemList.status%> <%= itemList.name %>

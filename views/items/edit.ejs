@@ -22,7 +22,19 @@
 
   <div class="form-group">
     <label for="status">Status</label>
-    <input type="text" class="form-control" name="status" id="status" value="<%=foundItemId.status%>">
+      <div class="container-fluid">
+        <div class="radio">
+          
+          <% if (foundItemId.status === 'unbought') { %>
+            <input type="radio" class="btn" name="status" id="status" value="unbought" checked> unbought<br>
+            <input type="radio" class="btn" name="status" id="status" value="bought"> bought<br>
+          <% } else { %>
+            <input type="radio" class="btn" name="status" id="status" value="unbought"> unbought<br>
+            <input type="radio" class="btn" name="status" id="status" value="bought" checked> bought<br>
+          <% } %>
+
+        </div>
+      </div>
   </div>
 
 
