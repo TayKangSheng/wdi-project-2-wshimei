@@ -42,6 +42,7 @@ module.exports = function (passport) {
     passwordField: 'password',
     passReqToCallback: true
   }, function (req, email, password, done) {
+    console.log('test')
     User.findOne({ 'local.email': email }, function (err, foundUser) {
       if (foundUser) {
         return done(null, false, req.flash('flash', {
@@ -59,7 +60,7 @@ module.exports = function (passport) {
         newUser.save(function (err, newUser) {
           return done(null, newUser, req.flash('flash', {
             type: 'success',
-            message: 'New User Created'
+            message: 'New User Created ' + newUser.local.email
           }))
         })
       }
