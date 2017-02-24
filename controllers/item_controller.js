@@ -67,6 +67,17 @@ let itemController = {
       })
   },
 
+  status: (req, res, next) => {
+    Item.findByIdAndUpdate(req.params.id, {
+      status: req.query.status
+    }, function (err, output) {
+      if (err) {
+        return next(err)
+      }
+      res.redirect('/items/' + req.params.id)
+    })
+  },
+
   delete: (req, res, next) => {
     Item.findByIdAndRemove(req.params.id, function (err, output) {
       if (err) {

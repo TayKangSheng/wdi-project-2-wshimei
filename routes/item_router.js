@@ -8,6 +8,7 @@ router.post('/add', itemController.create)
 router.get('/:id', itemController.show)
 router.get('/:id/edit', itemController.edit)
 router.put('/:id', itemController.update)
+router.put('/:id/status', itemController.status)
 router.delete('/:id', itemController.delete)
 
 module.exports = router

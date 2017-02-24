@@ -75,15 +75,6 @@ app.get('/', isLoggedIn, (req, res) => {
   res.render('homepage')
 })
 
-app.use(function (err, req, res, next) {
-  if (!res.HeadersSent) {
-    res.send(
-      {
-        message: err.message
-      })
-  }
-})
-
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
     res.status(err.status || 500)

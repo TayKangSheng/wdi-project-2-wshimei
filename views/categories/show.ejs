@@ -1,22 +1,51 @@
 <h3><%= category.name %></h3>
 
-<div class="list-group">
   <% if (category.items.length !== 0) {%>
-
     <% category.items.forEach(function(itemList) { %>
-      <a href="/items/<%=itemList.id%>" class="list-group-item default">
-        <%= itemList.status%> <%= itemList.name %>
-      </a>
 
+
+        <% if (itemList.status === 'bought') { %>
+
+          <div class="container-inline">
+            <form method="POST" action="/items/<%=itemList.id%>/status?_method=PUT&status=unbought">
+              <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-check" aria-hidden="true"></span></button> <%= itemList.name %>
+            </form>
+
+            <a class="btn btn-default" href="/items/<%=itemList.id%>" role="button">View</a>
+
+            </a>
+          </div>
+
+        <% } else { %>
+
+          <div class="container">
+            <form method="POST" action="/items/<%=itemList.id%>/status?_method=PUT&status=bought">
+              <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span></button> <%= itemList.name %>
+            </form>
+
+            <a class="btn btn-default" href="/items/<%=itemList.id%>" role="button">View</a>
+
+            </a>
+          </div>
+
+        <% } %>
     <%})%>
+
   <% } else { %>
+
     <a href="/items/add" class= "btn btn-info">Add Item</a>
+
   <% } %>
-</div>
+
+
+<br><br>
+<div class="container">
 
   <a href="/categories/<%=category.id%>/edit" class="btn btn-info col-md-2">Edit Category</a>
 
   <form method="POST" action="/categories/<%=category.id%>?_method=DELETE">
     <button class="btn btn-danger col-md-2" type="submit">Delete Category</button>
+  </form>
+</div>
 
 <pre><%=category.items%></pre>
