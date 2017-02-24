@@ -9,7 +9,8 @@ var ItemSchema = new mongoose.Schema({
   name: {type: String, required: [true, 'Item name required']},
   quantity: {type: Number, required: [true, 'Quantity required']},
   budget: String,
-  remark: String
+  remark: String,
+  category: String
 })
 
 var Item = mongoose.model('Item', ItemSchema)

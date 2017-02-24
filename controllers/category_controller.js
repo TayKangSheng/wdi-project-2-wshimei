@@ -36,7 +36,10 @@ let categoryController = {
       if (err) {
         return next(err)
       }
-      res.render('categories/list', {categories: output})
+      res.render('categories/list', {
+        categories: output,
+        flash: req.flash('flash')[0]
+      })
     })
   },
 
@@ -48,7 +51,10 @@ let categoryController = {
                 return next(err)
               }
 
-              res.render('categories/show', {category: output})
+              res.render('categories/show', {
+                category: output,
+                flash: req.flash('flash')[0]
+              })
             })
   },
 

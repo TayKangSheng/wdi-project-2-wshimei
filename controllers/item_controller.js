@@ -19,7 +19,8 @@ let itemController = {
       name: req.body.name,
       quantity: req.body.quantity,
       budget: req.body.budget,
-      remark: req.body.remark
+      remark: req.body.remark,
+      category: req.body.id
     }, function (err, createdItem) {
       if (err) {
         if (err.name === 'ValidationError') {
@@ -72,7 +73,8 @@ let itemController = {
       quantity: req.body.quantity,
       budget: req.body.budget,
       remark: req.body.remark,
-      status: req.body.status
+      status: req.body.status,
+      category: req.body.category
     },
       {
         new: true
@@ -102,11 +104,16 @@ let itemController = {
         return next(err)
       }
 
+      Category.findById(output.category, function (err, foundCat) {
+        foundCat.items.splice(foundCat.items.indexOf(output.category), 1)
+        foundCat.save()
+      })
+
       req.flash('flash', {
         type: 'warning',
         message: 'Deleted an item'
       })
-      res.redirect('/categories/list')
+      res.redirect('/categories/' + output.category)
     })
   }
 }
