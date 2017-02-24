@@ -1,13 +1,16 @@
-<% if(flash && flash.message) { %>
+
+<% if (flash && flash.message) {%>
+
   <div class="alert alert-<%=flash.type%>" role="alert">
-   <% if( Array.isArray(flash.message) ) { %>
-     <ul>
-      <% flash.message.forEach(function(msg) {%>
-        <li><%= msg %></li>
-      <% }) %>
-     </ul>
+    <% if (Array.isArray(flash.message)) { %>
+      <ul>
+        <% flash.message.forEach(function (msg) { %>
+          <li><%= msg %></li>
+        <% }) %>
+      </ul>
     <% } else { %>
       <%= flash.message %>
     <% } %>
   </div>
+
 <% } %>

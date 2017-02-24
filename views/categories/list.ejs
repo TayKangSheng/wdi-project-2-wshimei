@@ -1,20 +1,19 @@
-<h3>Categories</h3>
+<% include ../partials/flash %>
 
+<h3>Categories</h3>
 
 <div class="container-fluid">
     <% if (categories.length !== 0) {%>
       <div class="list-group">
     <% categories.forEach(function(category) { %>
-
       <a href="<%= category._id %>" class="list-group-item default">
-        <span class="badge"><%=category.items.length%></span>
         <h4 class="list-group-item-heading"><%= category.name %> </h4>
-
-        <p class="list-group-item-text">Created by: </p>
       </a>
-      </div>
-    <% }) %>
-    <% } else { %>
+    </div>
+    <a href="/categories/new" class= "btn btn-info">Create Category</a>
+  <% }) %>
+  <% } else { %>
+
       <h4>No category created</h4>
       <a href="/categories/new" class= "btn btn-info">Create Category</a>
 

@@ -7,7 +7,10 @@ let itemController = {
       if (err) {
         return next(err)
       }
-      res.render('items/add', {allCategories: foundCategories})
+      res.render('items/add', {
+        allCategories: foundCategories,
+        flash: req.flash('flash')[0]
+      })
     })
   },
 
@@ -19,11 +22,26 @@ let itemController = {
       remark: req.body.remark
     }, function (err, createdItem) {
       if (err) {
+        if (err.name === 'ValidationError') {
+          let errMessages = []
+          for (field in err.errors) {
+            errMessages.push(err.errors[field].message)
+          }
+          console.log(errMessages)
+          req.flash('flash', {
+            type: 'danger',
+            message: errMessages
+          })
+          res.redirect('/items/add')
+        }
+
         return next(err)
       }
+
       Category.findByIdAndUpdate(req.body.id, {$push: {'items': createdItem}}, function (err) {
-        if (err) throw err
-        return next(err)
+        if (err) {
+          return next(err)
+        }
       })
 
       res.redirect('/categories/' + req.body.id)
@@ -74,7 +92,7 @@ let itemController = {
       if (err) {
         return next(err)
       }
-      res.redirect('/items/' + req.params.id)
+      res.redirect('back')
     })
   },
 

@@ -14,6 +14,17 @@ let categoryController = {
       color: req.body.color
     }, function (err, output) {
       if (err) {
+        if (err.name === 'ValidationError') {
+          let errMessages = []
+          for (field in err.errors) {
+            errMessages.push(err.errors[field].message)
+          }
+          req.flash('flash', {
+            type: 'danger',
+            message: errMessages
+          })
+          res.redirect('/categories/new')
+        }
         return next(err)
       }
       res.redirect('/categories/list')
@@ -73,7 +84,7 @@ let categoryController = {
       }
       req.flash('flash', {
         type: 'warning',
-        message: 'Deleted an animal'
+        message: 'Deleted a category'
       })
       res.redirect('/categories/list')
     })

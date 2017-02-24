@@ -1,31 +1,31 @@
 <h3><%= category.name %></h3>
 
+
   <% if (category.items.length !== 0) {%>
     <% category.items.forEach(function(itemList) { %>
 
 
         <% if (itemList.status === 'bought') { %>
 
-          <div class="container-inline">
-            <form method="POST" action="/items/<%=itemList.id%>/status?_method=PUT&status=unbought">
+          <div class="container-fluid list-group-item">
+            <form class="col-md-9" method="POST" action="/items/<%=itemList.id%>/status?_method=PUT&status=unbought">
               <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-check" aria-hidden="true"></span></button> <%= itemList.name %>
             </form>
 
-            <a class="btn btn-default" href="/items/<%=itemList.id%>" role="button">View</a>
+            <a class="btn btn-default col-md-3 pull-right" href="/items/<%=itemList.id%>" role="button">View</a>
 
-            </a>
           </div>
 
         <% } else { %>
 
-          <div class="container">
-            <form method="POST" action="/items/<%=itemList.id%>/status?_method=PUT&status=bought">
+          <div class="container-fluid list-group-item">
+
+            <form class="col-md-9" method="POST" action="/items/<%=itemList.id%>/status?_method=PUT&status=bought">
               <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span></button> <%= itemList.name %>
             </form>
 
-            <a class="btn btn-default" href="/items/<%=itemList.id%>" role="button">View</a>
+            <a class="btn btn-default col-md-3 pull-right" href="/items/<%=itemList.id%>" role="button">View</a>
 
-            </a>
           </div>
 
         <% } %>
@@ -37,15 +37,14 @@
 
   <% } %>
 
+<br>
 
-<br><br>
-<div class="container">
+<div class="container-fluid">
 
   <a href="/categories/<%=category.id%>/edit" class="btn btn-info col-md-2">Edit Category</a>
 
   <form method="POST" action="/categories/<%=category.id%>?_method=DELETE">
     <button class="btn btn-danger col-md-2" type="submit">Delete Category</button>
   </form>
-</div>
 
-<pre><%=category.items%></pre>
+</div>

@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 
 var UserSchema = new mongoose.Schema({
   local: {
-    email: {type: String, require: [true, 'Email required.']},
-    nickname: {type: String, require: [true, 'Please provide a nickname.']},
-    password: {type: String, require: [true, 'Password required']}
+    email: {type: String, required: [true, 'Email required']},
+    nickname: {type: String, required: [true, 'Please provide a nickname']},
+    password: {type: String, required: [true, 'Password required']}
   }
 })
 
