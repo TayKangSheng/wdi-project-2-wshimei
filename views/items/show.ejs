@@ -1,7 +1,5 @@
 <h3><%= item.name %></h3>
 
-<% include ../partials/flash %>
-
 <p>Quantity: <%= item.quantity %></p>
 <p>Budget: $<%= item.budget %></p>
 <p>Remark: <%= item.remark %></p>
@@ -12,3 +10,7 @@
   <form method="POST" action="/items/<%=item.id%>/?_method=DELETE">
   <button class="btn btn-danger col-md-2" type="submit">Delete</button>
 </form>
+
+<br><br>
+
+<form><input class="btn btn-default col-md-2" Type="button" value="&#8678 Back to list" onClick="history.go(-1);return true;"></form>

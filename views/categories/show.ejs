@@ -1,6 +1,5 @@
 <h3><%= category.name %></h3>
 
-
   <% if (category.items.length !== 0) {%>
     <% category.items.forEach(function(itemList) { %>
 
@@ -12,7 +11,7 @@
               <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-check" aria-hidden="true"></span></button> <%= itemList.name %>
             </form>
 
-            <a class="btn btn-default col-md-3 pull-right" href="/items/<%=itemList.id%>" role="button">View</a>
+            <a class="btn btn-default col-md-3 pull-right" href="/items/<%=itemList.id%>">View</a>
 
           </div>
 
