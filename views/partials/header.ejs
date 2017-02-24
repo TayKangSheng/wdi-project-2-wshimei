@@ -17,7 +17,6 @@
       </div>
 
     <div class="col-md-11 text-right">
-      <%=user.local.email%>
 
         <a href="/items/add">
           <button type="button" class="btn btn-info btn-lg" align="right" data-toggle="tooltip" data-placement="bottom" title="Add item">
@@ -35,3 +34,5 @@
     </div>
   <% } %>
 </nav>
+
+<h5 class="pull-right">Logged in as: <strong><%=user.local.nickname%></strong></h5>
