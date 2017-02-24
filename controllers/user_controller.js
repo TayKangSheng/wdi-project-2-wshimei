@@ -8,6 +8,7 @@ let userController = {
       flash: req.flash('flash')[0]
     })
   },
+
   create: (req, res, next) => {
     var loginStrategy = passport.authenticate('local-signup', {
       successRedirect: '/categories/list',
@@ -16,11 +17,13 @@ let userController = {
     })
     return loginStrategy(req, res)
   },
+
   loginPage: (req, res, next) => {
     res.render('users/login', {
       flash: req.flash('flash')[0]
     })
   },
+
   login: (req, res, next) => {
     var loginStrategy = passport.authenticate('local-login', {
       successRedirect: '/categories/list',

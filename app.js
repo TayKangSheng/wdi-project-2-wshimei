@@ -43,10 +43,6 @@ app.set('view engine', 'ejs')
 function isNotLoggedIn (req, res, next) {
   if (req.isAuthenticated()) return next()
 
-  req.flash('flash', {
-    type: 'danger',
-    message: 'Restricted Page: Please login'
-  })
   return res.redirect('/')
 }
 
@@ -54,10 +50,6 @@ function isNotLoggedIn (req, res, next) {
 function isLoggedIn (req, res, next) {
   if (req.isAuthenticated() === false) return next()
 
-  req.flash('flash', {
-    type: 'danger',
-    message: 'You are already logged in'
-  })
   return res.redirect('/categories/list')
 }
 
