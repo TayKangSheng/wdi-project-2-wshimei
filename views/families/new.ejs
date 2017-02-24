@@ -1,0 +1,17 @@
+<% include ../partials/flash %>
+
+<h3>New Family</h3>
+
+<form action="/families/new" method="post">
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" name="name" id="name">
+  </div>
+  <div class="form-group">
+    <label for="userEmail">User Email</label>
+    <input type="email" class="form-control" name="userEmail" id="userEmail">
+  </div>
+
+  <input type="submit" class="btn btn-default">
+</form>

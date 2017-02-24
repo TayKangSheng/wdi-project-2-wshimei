@@ -1,0 +1,21 @@
+
+<h3>Families</h3>
+
+<div class="container-fluid">
+    <% if (families.length !== 0) {%>
+      <div class="list-group">
+    <% families.forEach(function(family) { %>
+      <a href="<%= family._id %>" class="list-group-item default">
+        <h4 class="list-group-item-heading"><%= family.name %> </h4>
+      </a>
+    </div>
+    <a href="/families/new" class= "btn btn-info">Create Family</a>
+  <% }) %>
+  <% } else { %>
+
+      <h4>No family created</h4>
+      <a href="/families/new" class= "btn btn-info">Create Family</a>
+
+    <% } %>
+
+</div>

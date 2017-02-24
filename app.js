@@ -13,6 +13,7 @@ const MongoStore = require('connect-mongo')(session)
 const userRouter = require('./routes/user_router')
 const categoryRouter = require('./routes/category_router')
 const itemRouter = require('./routes/item_router')
+const familyRouter = require('./routes/family_router')
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI)
@@ -62,6 +63,7 @@ app.use(function (req, res, next) {
 app.use('/users', userRouter)
 app.use('/categories', isNotLoggedIn, categoryRouter)
 app.use('/items', isNotLoggedIn, itemRouter)
+app.use('/families', isNotLoggedIn, familyRouter)
 
 app.get('/', isLoggedIn, (req, res) => {
   res.render('homepage')
