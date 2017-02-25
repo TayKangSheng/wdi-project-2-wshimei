@@ -59,7 +59,7 @@ module.exports = function (passport) {
         newUser.save(function (err, newUser) {
           return done(null, newUser, req.flash('flash', {
             type: 'success',
-            message: 'New User Created ' + newUser.local.email
+            message: 'New User Created: ' + newUser.local.email
           }))
         })
       }

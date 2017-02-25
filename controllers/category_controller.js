@@ -69,8 +69,8 @@ let categoryController = {
 
   update: (req, res, next) => {
     Category.findOneAndUpdate(req.params.id, {
-      name: req.body.name,
-      color: req.body.color
+      name: req.body.name
+      // color: req.body.color
     },
       {
         new: true

@@ -2,24 +2,24 @@
 
 <h3>Edit Item</h3>
 
-<form method="POST" action="/items/<%=foundItemId%>?_method=PUT">
+<form method="POST" action="/items/<%=foundItem%>?_method=PUT">
   <div class="form-group">
     <label for="name">Item</label>
-    <input type="name" class="form-control" name="name" id="name" value="<%=foundItemId.name%>">
+    <input type="name" class="form-control" name="name" id="name" value="<%=foundItem.name%>">
   </div>
   <div class="form-group">
     <label for="quantity">Quantity</label>
-    <input type="number" class="form-control" name="quantity" id="quantity" value="<%=foundItemId.quantity%>">
+    <input type="number" class="form-control" name="quantity" id="quantity" value="<%=foundItem.quantity%>">
   </div>
 
   <label for="budget">Budget</label>
   <div class="form-group">
-    <input type="text" aria-label="Amount (to the nearest dollar)" class="form-control" name="budget" id="budget" value="<%=foundItemId.budget%>">
+    <input type="text" aria-label="Amount (to the nearest dollar)" class="form-control" name="budget" id="budget" value="<%=foundItem.budget%>">
   </div>
 
   <div class="form-group">
     <label for="remark">Remark</label>
-    <input type="text" class="form-control" name="remark" id="remark" value="<%=foundItemId.remark%>">
+    <input type="text" class="form-control" name="remark" id="remark" value="<%=foundItem.remark%>">
   </div>
 
   <div class="form-group">
@@ -27,7 +27,7 @@
       <div class="container-fluid">
         <div class="radio">
 
-          <% if (foundItemId.status === 'unbought') { %>
+          <% if (foundItem.status === 'unbought') { %>
             <input type="radio" class="btn" name="status" id="status" value="unbought" checked> unbought<br>
             <input type="radio" class="btn" name="status" id="status" value="bought"> bought<br>
           <% } else { %>
@@ -39,6 +39,21 @@
       </div>
   </div>
 
+  <div class = "form-group">
+        <label>Categories</label>
+
+        <ul>
+          <% foundCat.forEach(category => { %>
+            <li>
+              <label>
+                <input type="checkbox" name="id" value="<%=category.id%>">
+                <%= category.name %>
+              </label>
+            </li>
+          <%})%>
+          <li><a href="/categories/new">New Category</a></li>
+        </ul>
+      </div>
 
   <input type="submit" class="btn btn-info">
 </form>

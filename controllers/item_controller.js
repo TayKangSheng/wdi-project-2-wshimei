@@ -50,20 +50,30 @@ let itemController = {
   },
 
   show: (req, res, next) => {
-    Item.findById(req.params.id, function (err, output) {
-      if (err) {
-        return next(err)
-      }
-      res.render('items/show', {item: output})
-    })
+    Item.findById(req.params.id)
+        .populate('category')
+        .exec(function (err, output) {
+          if (err) {
+            return next(err)
+          }
+          res.render('items/show', {item: output})
+        })
   },
 
   edit: (req, res, next) => {
-    Item.findById(req.params.id, function (err, output) {
+    Category.find({}, function (err, foundCat) {
       if (err) {
         return next(err)
       }
-      res.render('items/edit', {foundItemId: output})
+      Item.findById(req.params.id, function (err, output) {
+        if (err) {
+          return next(err)
+        }
+        res.render('items/edit', {
+          foundItem: output,
+          foundCat: foundCat
+        })
+      })
     })
   },
 
@@ -74,7 +84,7 @@ let itemController = {
       budget: req.body.budget,
       remark: req.body.remark,
       status: req.body.status,
-      category: req.body.category
+      category: req.body.id
     },
       {
         new: true

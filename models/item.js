@@ -10,7 +10,7 @@ var ItemSchema = new mongoose.Schema({
   quantity: {type: Number, required: [true, 'Quantity required']},
   budget: String,
   remark: String,
-  category: String
+  category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category'}
 })
 
 var Item = mongoose.model('Item', ItemSchema)
