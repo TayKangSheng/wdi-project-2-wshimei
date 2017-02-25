@@ -27,7 +27,7 @@ let categoryController = {
         }
         return next(err)
       }
-      res.redirect('/categories/list')
+      res.redirect('/categories/' + output.id)
     })
   },
 

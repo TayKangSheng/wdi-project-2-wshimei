@@ -87,8 +87,7 @@ let itemController = {
       quantity: req.body.quantity,
       budget: req.body.budget,
       remark: req.body.remark,
-      status: req.body.status,
-      category: req.body.id
+      status: req.body.status
     },
       {
         new: true
