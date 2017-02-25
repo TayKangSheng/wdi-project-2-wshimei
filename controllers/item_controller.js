@@ -61,20 +61,24 @@ let itemController = {
   },
 
   edit: (req, res, next) => {
-    Category.find({}, function (err, foundCat) {
-      if (err) {
-        return next(err)
-      }
-      Item.findById(req.params.id, function (err, output) {
-        if (err) {
-          return next(err)
-        }
-        res.render('items/edit', {
-          foundItem: output,
-          foundCat: foundCat
-        })
-      })
-    })
+    // Category.find({}, function (err, foundCat) {
+    //   if (err) {
+    //     return next(err)
+    //   }
+    Item.findById(req.params.id)
+          .populate('category')
+          .exec(function (err, foundItem) {
+            if (err) {
+              return next(err)
+            }
+            console.log(foundItem)
+            res.render('items/edit', {
+          // foundCat: foundCat,
+              foundItem: foundItem
+
+        // })
+            })
+          })
   },
 
   update: (req, res, next) => {

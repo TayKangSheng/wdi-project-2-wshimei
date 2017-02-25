@@ -10,8 +10,8 @@ let categoryController = {
 
   create: (req, res, next) => {
     Category.create({
-      name: req.body.name,
-      color: req.body.color
+      name: req.body.name
+      // color: req.body.color
     }, function (err, output) {
       if (err) {
         if (err.name === 'ValidationError') {

@@ -39,21 +39,10 @@
       </div>
   </div>
 
-  <div class = "form-group">
-        <label>Categories</label>
-
-        <ul>
-          <% foundCat.forEach(category => { %>
-            <li>
-              <label>
-                <input type="checkbox" name="id" value="<%=category.id%>">
-                <%= category.name %>
-              </label>
-            </li>
-          <%})%>
-          <li><a href="/categories/new">New Category</a></li>
-        </ul>
-      </div>
+  <div class="form-group">
+    <label for="category">Category</label>
+      <input type="text" class="form-control" name="category" id="category" value="<%=foundItem.category.name%>" readonly>
+    </div>
 
   <input type="submit" class="btn btn-info">
 </form>

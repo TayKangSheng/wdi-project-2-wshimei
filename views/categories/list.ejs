@@ -4,15 +4,17 @@
 <h3>Categories</h3>
 
 <div class="container-fluid">
+  <div class="list-group">
     <% if (categories.length !== 0) {%>
-      <div class="list-group">
     <% categories.forEach(function(category) { %>
       <a href="<%= category._id %>" class="list-group-item default">
-        <h4 class="list-group-item-heading"><span class="badge"><%= category.items.length%></span> <%= category.name %> </h4>
+        <h4 class="list-group-item-heading"><span class="badge"><%=category.items.length%></span> <%= category.name %> </h4>
       </a>
-    </div>
-    <a href="/categories/new" class= "btn btn-info">Create Category</a>
   <% }) %>
+
+  </div>
+  <a href="/categories/new" class= "btn btn-info">Create Category</a>
+
   <% } else { %>
 
       <h4>No category created</h4>
