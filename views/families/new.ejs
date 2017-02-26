@@ -8,9 +8,15 @@
     <label for="name">Name</label>
     <input type="text" class="form-control" name="name" id="name">
   </div>
+
   <div class="form-group">
-    <label for="userEmail">User Email</label>
-    <input type="email" class="form-control" name="userEmail" id="userEmail">
+    <label for="creator">Creator</label>
+    <input type="email" class="form-control" name="creator" id="creator" value="<%=user.local.email%>" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="users">Member Email</label>
+    <input type="email" class="form-control" name="users" id="users">
   </div>
 
   <input type="submit" class="btn btn-default">

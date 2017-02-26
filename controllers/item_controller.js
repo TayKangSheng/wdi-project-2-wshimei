@@ -20,7 +20,8 @@ let itemController = {
       quantity: req.body.quantity,
       budget: req.body.budget,
       remark: req.body.remark,
-      category: req.body.id
+      category: req.body.id,
+      postedBy: req.body.postedBy
     }, function (err, createdItem) {
       if (err) {
         if (err.name === 'ValidationError') {
@@ -28,7 +29,7 @@ let itemController = {
           for (field in err.errors) {
             errMessages.push(err.errors[field].message)
           }
-          console.log(errMessages)
+
           req.flash('flash', {
             type: 'danger',
             message: errMessages
@@ -52,6 +53,7 @@ let itemController = {
   show: (req, res, next) => {
     Item.findById(req.params.id)
         .populate('category')
+        .populate('user')
         .exec(function (err, output) {
           if (err) {
             return next(err)
@@ -67,6 +69,7 @@ let itemController = {
     //   }
     Item.findById(req.params.id)
           .populate('category')
+          .populate('user')
           .exec(function (err, foundItem) {
             if (err) {
               return next(err)
@@ -82,7 +85,7 @@ let itemController = {
   },
 
   update: (req, res, next) => {
-    Item.findOneAndUpdate(req.params.id, {
+    Item.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
       quantity: req.body.quantity,
       budget: req.body.budget,
@@ -96,6 +99,7 @@ let itemController = {
         if (err) {
           return next(err)
         }
+        console.log(foundItem)
         res.redirect('/items/' + foundItem.id)
       })
   },

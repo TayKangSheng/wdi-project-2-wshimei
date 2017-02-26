@@ -1,49 +1,24 @@
 <h3><%= family.name %></h3>
 
-  <% if (family.users.length !== 0) {%>
-    <% family.users.forEach(function(userList) { %>
-
-
-        <% if (userList.status === 'bought') { %>
-
-          <div class="container-fluid list-group-item">
-            <form class="col-md-9" method="POST" action="/users/<%=userList.id%>/status?_method=PUT&status=unbought">
-              <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-check" aria-hidden="true"></span></button> <%= userList.name %>
-            </form>
-
-            <a class="btn btn-default col-md-3 pull-right" href="/users/<%=userList.id%>">View</a>
-
-          </div>
-
-        <% } else { %>
-
-          <div class="container-fluid list-group-item">
-
-            <form class="col-md-9" method="POST" action="/users/<%=userList.id%>/status?_method=PUT&status=bought">
-              <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span></button> <%= userList.name %>
-            </form>
-
-            <a class="btn btn-default col-md-3 pull-right" href="/users/<%=userList.id%>" role="button">View</a>
-
-          </div>
-
-        <% } %>
-    <%})%>
-
-  <% } else { %>
-
-    <div class="container-fluid">
-      <a href="/users/add" class= "btn btn-info">Add Users</a>
+<% if (family.users.length !== 0) { %>
+  <% family.users.forEach(function(user) { %>
+    <div class="container-fluid list-group-item">
+      <%= user %>
     </div>
-  <% } %>
+  <% }) %>
+<% } else { %>
+  <div class="container-fluid">
+    <a href="/users/add" class= "btn btn-info">Add Users</a>
+  </div>
+<% } %>
 
 <br>
 
 <div class="container-fluid">
 
-  <a href="/categories/<%=family.id%>/edit" class="btn btn-info col-md-2">Edit Family</a>
+  <a href="/families/<%=family.users%>/edit" class="btn btn-info col-md-2">Edit Family</a>
 
-  <form method="POST" action="/categories/<%=family.id%>?_method=DELETE">
+  <form method="POST" action="/families/<%=family.users%>?_method=DELETE">
     <button class="btn btn-danger col-md-2" type="submit">Delete Family</button>
   </form>
 

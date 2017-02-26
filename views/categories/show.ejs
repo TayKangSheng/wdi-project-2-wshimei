@@ -10,11 +10,16 @@
         <% if (itemList.status === 'bought') { %>
 
           <div class="container-fluid list-group-item">
-            <form class="col-md-9" method="POST" action="/items/<%=itemList.id%>/status?_method=PUT&status=unbought">
+            <form class="col-md-7" method="POST" action="/items/<%=itemList.id%>/status?_method=PUT&status=unbought">
               <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-check" aria-hidden="true"></span></button> <%= itemList.name %>
             </form>
 
+
             <a class="btn btn-default col-md-3 pull-right" href="/items/<%=itemList.id%>">View</a>
+
+            <div class="col-md-2">
+            Posted By: <%= itemList.postedBy%>
+            </div>
 
           </div>
 
@@ -22,11 +27,16 @@
 
           <div class="container-fluid list-group-item">
 
-            <form class="col-md-9" method="POST" action="/items/<%=itemList.id%>/status?_method=PUT&status=bought">
+            <form class="col-md-7" method="POST" action="/items/<%=itemList.id%>/status?_method=PUT&status=bought">
               <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span></button> <%= itemList.name %>
             </form>
 
+
             <a class="btn btn-default col-md-3 pull-right" href="/items/<%=itemList.id%>" role="button">View</a>
+
+            <div class="col-md-2">
+            Posted By: <%= itemList.postedBy%>
+            </div>
 
           </div>
 

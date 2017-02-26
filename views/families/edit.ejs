@@ -1,13 +1,9 @@
 <h3>Edit Family</h3>
 
-<form method="POST" action="/families/<%=familyId%>?_method=PUT">
+<form method="POST" action="/families/<%=family%>?_method=PUT">
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="name" class="form-control" name="name" id="name" value="<%=familyId.name%>">
-  </div>
-  <div class="form-group">
-    <label for="userEmail">User Email</label>
-    <input type="email" class="form-control" name="email" id="email" value="<%=familyId.email%>">
+    <input type="name" class="form-control" name="name" id="name" value="<%=family.name%>">
   </div>
 
   <input type="submit" class="btn btn-default">

@@ -11,7 +11,7 @@ let familyController = {
   create: (req, res, next) => {
     Family.create({
       name: req.body.name,
-      // main: req.locals.user,
+      creator: req.body.email,
       users: req.body.users
     }, function (err, output) {
       if (err) {
@@ -28,6 +28,7 @@ let familyController = {
         }
         return next(err)
       }
+
       res.redirect('/families/list')
     })
   },
@@ -42,15 +43,13 @@ let familyController = {
   },
 
   show: (req, res, next) => {
-    Family.findById(req.params.id)
-            .populate('users')
-            .exec(function (err, output) {
-              if (err) {
-                return next(err)
-              }
-
-              res.render('families/show', {family: output})
-            })
+    Family.findById(req.params.id, function (err, output) {
+      if (err) {
+        return next(err)
+      }
+      console.log(output)
+      res.render('families/show', {family: output})
+    })
   },
 
   edit: (req, res, next) => {
@@ -58,14 +57,14 @@ let familyController = {
       if (err) {
         return next(err)
       }
-      res.render('families/edit', {familyId: output})
+      console.log(output)
+      res.render('families/edit', {family: output})
     })
   },
 
   update: (req, res, next) => {
     Family.findOneAndUpdate(req.params.id, {
-      name: req.body.name,
-      users: req.body.user
+      name: req.body.name
     },
       {
         new: true

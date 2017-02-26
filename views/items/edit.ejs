@@ -1,8 +1,7 @@
 
-
 <h3>Edit Item</h3>
 
-<form method="POST" action="/items/<%=foundItem%>?_method=PUT">
+<form method="POST" action="/items/<%=foundItem.id%>?_method=PUT">
   <div class="form-group">
     <label for="name">Item</label>
     <input type="name" class="form-control" name="name" id="name" value="<%=foundItem.name%>">

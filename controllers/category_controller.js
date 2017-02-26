@@ -63,12 +63,13 @@ let categoryController = {
       if (err) {
         return next(err)
       }
-      res.render('categories/edit', {categoryId: output})
+      console.log(output.id)
+      res.render('categories/edit', {category: output})
     })
   },
 
   update: (req, res, next) => {
-    Category.findOneAndUpdate(req.params.id, {
+    Category.findByIdAndUpdate(req.params.id, {
       name: req.body.name
       // color: req.body.color
     },
@@ -79,6 +80,8 @@ let categoryController = {
         if (err) {
           return next(err)
         }
+        console.log(updatedCat)
+
         res.redirect('/categories/' + updatedCat.id)
       })
   },
