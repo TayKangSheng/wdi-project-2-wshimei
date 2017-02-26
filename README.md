@@ -1,6 +1,6 @@
 # Our List of Shoppings
 
-A small group shopping list designed for groups such as family, room-mates, close neighbour, etc.
+A small group shopping list designed for groups such as family, room-mates, close neighbours, etc.
 
 
 ## Live Version
@@ -13,7 +13,22 @@ Node.js
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+![alt text](images/a.png)
+
+![alt text](images/b.png)
+
+![alt text](images/c.png)
+
+![alt text](images/d.png)
+
+![alt text](images/e.png)
+
+![alt text](images/f.png)
+
+![alt text](images/g.png)
+
+![alt text](images/h.png)
+
 
 ## Authors
 
@@ -21,4 +36,4 @@ Shimei Wong
 
 ## Acknowledgments
 
-BIG BIG THANK YOU to all the classmates and TA that helped me!
+BIG BIG THANK YOU to all the classmates and our class TA that helped!
