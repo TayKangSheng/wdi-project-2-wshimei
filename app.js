@@ -1,13 +1,15 @@
 require('dotenv').config({silent: true})
-const bodyParser = require('body-parser')
+
 const express = require('express')
 const app = express()
 const ejsLayouts = require('express-ejs-layouts')
 const session = require('express-session')
-const passport = require('passport')
-const methodOverride = require('method-override')
-const flash = require('connect-flash')
+
 const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
+const passport = require('passport')
+const flash = require('connect-flash')
 const MongoStore = require('connect-mongo')(session)
 
 const userRouter = require('./routes/user_router')
@@ -16,8 +18,17 @@ const itemRouter = require('./routes/item_router')
 const familyRouter = require('./routes/family_router')
 
 const mongoose = require('mongoose')
-mongoose.connect(process.env.MONGODB_URI)
 mongoose.Promise = global.Promise
+mongoose.connect(process.env.MONGODB_URI, {
+  useMongoClient: true
+}).then(
+  function () { // resolve cb
+    console.log('connected successfully')
+  },
+  function (err) { // reject cb
+    console.log(err)
+  }
+)
 
 app.use(cookieParser(process.env.SESSION_SECRET))
 app.use(session({
@@ -51,7 +62,7 @@ function isNotLoggedIn (req, res, next) {
 function isLoggedIn (req, res, next) {
   if (req.isAuthenticated() === false) return next()
 
-  return res.redirect('/categories/list')
+  return res.redirect('/families/list')
 }
 
 app.use(function (req, res, next) {
