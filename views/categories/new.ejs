@@ -5,7 +5,7 @@
 <form action="/categories/new" method="post">
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="name" class="form-control" name="name" id="name">
+    <input type="text" class="form-control" name="name" id="name">
   </div>
 
 
@@ -14,6 +14,10 @@
     <input type="text" class="form-control" name="color" id="color">
   </div>
   %>
+
+  <div class="form-group">
+    <input type="text" class="form-control hidden" name="family" id="family" value="<%=user.family%>">
+  </div>
 
   <input type="submit" class="btn btn-default">
 </form>

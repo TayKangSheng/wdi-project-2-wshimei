@@ -10,8 +10,9 @@ let categoryController = {
 
   create: (req, res, next) => {
     Category.create({
-      name: req.body.name
+      name: req.body.name,
       // color: req.body.color
+      family: req.body.family
     }, function (err, output) {
       if (err) {
         if (err.name === 'ValidationError') {
@@ -32,10 +33,11 @@ let categoryController = {
   },
 
   list: (req, res, next) => {
-    Category.find(function (err, output) {
+    Category.find({family: res.locals.user.family}, function (err, output) {
       if (err) {
         return next(err)
       }
+
       res.render('categories/list', {
         categories: output,
         flash: req.flash('flash')[0]
