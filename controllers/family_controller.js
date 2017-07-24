@@ -37,7 +37,13 @@ let familyController = {
       if (err) {
         return next(err)
       }
-      res.render('families/list', {families: output})
+      if (res.locals.user.family.length > 1) {
+        res.render('families/list', {families: output})
+      } else if (res.locals.user.family.length === 0) {
+        res.redirect('/families/new')
+      } else {
+        res.redirect('/categories/list')
+      }
     })
   },
 
@@ -48,10 +54,8 @@ let familyController = {
             if (err) {
               return next(err)
             }
-            console.log(output)
             User.find({family: req.params.id}, function (err, foundUsers) {
               if (err) return next(err)
-              console.log(foundUsers)
               res.render('families/show', {
                 family: output,
                 users: foundUsers

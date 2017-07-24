@@ -11,7 +11,7 @@ let userController = {
 
   create: (req, res, next) => {
     var loginStrategy = passport.authenticate('local-signup', {
-      successRedirect: '/categories/list',
+      successRedirect: '/families/list',
       failureRedirect: '/users/signup',
       failureFlash: true
     })
@@ -26,7 +26,7 @@ let userController = {
 
   login: (req, res, next) => {
     var loginStrategy = passport.authenticate('local-login', {
-      successRedirect: '/categories/list',
+      successRedirect: '/families/list',
       failureRedirect: '/users/login',
       failureFlash: true
     })
