@@ -11,8 +11,7 @@ let familyController = {
   create: (req, res, next) => {
     Family.create({
       name: req.body.name,
-      creator: req.body.email,
-      users: req.body.users
+      creator: req.body.creator
     }, function (err, output) {
       if (err) {
         if (err.name === 'ValidationError') {
@@ -43,13 +42,22 @@ let familyController = {
   },
 
   show: (req, res, next) => {
-    Family.findById(req.params.id, function (err, output) {
-      if (err) {
-        return next(err)
-      }
-      console.log(output)
-      res.render('families/show', {family: output})
-    })
+    Family.findById(req.params.id)
+          .populate('Family')
+          .exec(function (err, output) {
+            if (err) {
+              return next(err)
+            }
+            console.log(output)
+            User.find({family: req.params.id}, function (err, foundUsers) {
+              if (err) return next(err)
+              console.log(foundUsers)
+              res.render('families/show', {
+                family: output,
+                users: foundUsers
+              })
+            })
+          })
   },
 
   edit: (req, res, next) => {
@@ -57,7 +65,6 @@ let familyController = {
       if (err) {
         return next(err)
       }
-      console.log(output)
       res.render('families/edit', {family: output})
     })
   },
@@ -87,6 +94,32 @@ let familyController = {
         message: 'Deleted a family'
       })
       res.redirect('/families/list')
+    })
+  },
+
+  members: (req, res, next) => {
+    Family.findById(req.params.id, function (err, output) {
+      if (err) return next(err)
+
+      res.render('families/add', {
+        family: output
+      })
+    })
+  },
+
+  addMember: (req, res, next) => {
+    User.findOne({'local.email': req.body.userEmail}, function (err, foundUser) {
+      if (err) res.send(err)
+
+      Family.findById(req.params.id, function (err, foundFamily) {
+        if (err) res.send(err)
+
+        foundFamily.users.push(foundUser.id)
+        foundFamily.save()
+        foundUser.family.push(foundFamily.id)
+        foundUser.save()
+      })
+      res.redirect(`/families/${req.params.id}`)
     })
   }
 }

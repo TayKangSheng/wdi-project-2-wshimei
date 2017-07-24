@@ -1,14 +1,18 @@
 <h3><%= family.name %></h3>
 
-<% if (family.users.length !== 0) { %>
-  <% family.users.forEach(function(user) { %>
+<% if (users.length !== 0) { %>
+  <% users.forEach(function(user) { %>
     <div class="container-fluid list-group-item">
-      <%= user %>
+      <%= user.local.nickname %>
     </div>
   <% }) %>
+
+  <div class="container-fluid">
+    <a href="/families/<%=family.id%>/addMember" class= "btn btn-info">Add Users</a>
+  </div>
 <% } else { %>
   <div class="container-fluid">
-    <a href="/users/add" class= "btn btn-info">Add Users</a>
+    <a href="/families/<%=family.id%>/addMember" class= "btn btn-info">Add Users</a>
   </div>
 <% } %>
 
