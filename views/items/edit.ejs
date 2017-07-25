@@ -26,12 +26,12 @@
       <div class="container-fluid">
         <div class="radio">
 
-          <% if (foundItem.status === 'unbought') { %>
-            <input type="radio" class="btn" name="status" id="status" value="unbought" checked> unbought<br>
-            <input type="radio" class="btn" name="status" id="status" value="bought"> bought<br>
+          <% if (foundItem.status === 'Not Bought') { %>
+            <input type="radio" class="btn" name="status" id="status" value="Not Bought" checked> Not Bought<br>
+            <input type="radio" class="btn" name="status" id="status" value="Bought"> Bought<br>
           <% } else { %>
-            <input type="radio" class="btn" name="status" id="status" value="unbought"> unbought<br>
-            <input type="radio" class="btn" name="status" id="status" value="bought" checked> bought<br>
+            <input type="radio" class="btn" name="status" id="status" value="Not Bought"> Not Bought<br>
+            <input type="radio" class="btn" name="status" id="status" value="Bought" checked> Bought<br>
           <% } %>
 
         </div>

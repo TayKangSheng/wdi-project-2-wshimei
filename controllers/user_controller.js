@@ -4,9 +4,8 @@ require('../config/passportConfig')
 
 let userController = {
   new: (req, res, next) => {
-    res.render('users/signup', {
-      flash: req.flash('flash')[0]
-    })
+    // return res.send(req.flash('errors'))
+    res.render('users/signup')
   },
 
   create: (req, res, next) => {
@@ -27,8 +26,7 @@ let userController = {
   login: (req, res, next) => {
     var loginStrategy = passport.authenticate('local-login', {
       successRedirect: '/families/list',
-      failureRedirect: '/users/login',
-      failureFlash: true
+      failureRedirect: '/users/login'
     })
     return loginStrategy(req, res)
   },

@@ -66,8 +66,11 @@ function isLoggedIn (req, res, next) {
 }
 
 app.use(function (req, res, next) {
-  res.locals.user = req.user
-  res.locals.isAuthenticated = req.isAuthenticated()
+  app.locals.user = req.user
+  app.locals.isAuthenticated = req.isAuthenticated()
+  app.locals.errors = req.flash('error')
+  app.locals.infos = req.flash('infos')
+
   next()
 })
 

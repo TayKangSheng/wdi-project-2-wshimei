@@ -33,16 +33,29 @@ let categoryController = {
   },
 
   list: (req, res, next) => {
-    Category.find({family: res.locals.user.family}, function (err, output) {
-      if (err) {
-        return next(err)
-      }
-
-      res.render('categories/list', {
-        categories: output,
-        flash: req.flash('flash')[0]
+    if (req.user.family.length > 1) {
+      // for (var i = 0; i < res.locals.user.family.length; i++) {
+      Category.find({}, function (err, output) {
+        if (err) {
+          return next(err)
+        }
+        res.render('categories/list', {
+          categories: output,
+          flash: req.flash('flash')[0]
+        })
       })
-    })
+      // }
+    } else {
+      Category.find({family: req.user.family}, function (err, output) {
+        if (err) {
+          return next(err)
+        }
+        res.render('categories/list', {
+          categories: output,
+          flash: req.flash('flash')[0]
+        })
+      })
+    }
   },
 
   show: (req, res, next) => {

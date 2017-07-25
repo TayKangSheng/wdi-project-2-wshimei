@@ -19,16 +19,19 @@ module.exports = function (passport) {
     passReqToCallback: true
   }, function (req, email, givenPassword, done) {
     User.findOne({'local.email': email}, function (err, foundUser) {
-      if (err) return done(err)
+      if (err)  {
+        req.flash('errors', err)
+        return done(err)
+      }
 
       if (!foundUser) {
-        return done(null, false, req.flash('flash', {
+        return done(null, false, req.flash('errors', {
           type: 'warning',
           message: 'No user found by this email'
         }))
       }
       if (!foundUser.validPassword(givenPassword)) {
-        return done(null, false, req.flash('flash', {
+        return done(null, false, req.flash('errors', {
           type: 'danger',
           message: 'Access Denied. Password is wrong'
         }))

@@ -1,4 +1,3 @@
-
 <% include ../partials/flash %>
 
 <div class="container-fluid">
@@ -30,13 +29,20 @@
 
         <ul>
           <% allCategories.forEach(category => { %>
-            <li>
-              <label>
-                <input type="checkbox" name="id" value="<%=category.id%>">
-                <%= category.name %>
-              </label>
-            </li>
+
+            <% if (category.id === catId) { %>
+                <li>
+                  <input type="radio" name="id" value="<%=category.id%>" checked>
+                  <%= category.name %>
+                </li>
+              <% } else { %>
+                <li>
+                  <input type="radio" name="id" value="<%=category.id%>">
+                  <%= category.name %>
+                </li>
+                <% } %>
           <%})%>
+
           <li><a href="/categories/new">New Category</a></li>
         </ul>
       </div>

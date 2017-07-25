@@ -37,9 +37,9 @@ let familyController = {
       if (err) {
         return next(err)
       }
-      if (res.locals.user.family.length > 1) {
+      if (req.user.family.length > 1) {
         res.render('families/list', {families: output})
-      } else if (res.locals.user.family.length === 0) {
+      } else if (req.user.family.length === 0) {
         res.redirect('/families/new')
       } else {
         res.redirect('/categories/list')

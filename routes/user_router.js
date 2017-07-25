@@ -13,6 +13,7 @@ function isLoggedIn (req, res, next) {
   })
   return res.redirect('/categories/list')
 }
+
 router.get('/signup', isLoggedIn, userController.new)
 router.post('/signup', isLoggedIn, userController.create)
 router.get('/login', isLoggedIn, userController.loginPage)

@@ -5,8 +5,6 @@
 
   <% if (category.items.length !== 0) {%>
     <% category.items.forEach(function(itemList) { %>
-
-
         <% if (itemList.status === 'bought') { %>
 
           <div class="container-fluid list-group-item">
@@ -18,7 +16,7 @@
             <a class="btn btn-default col-md-3 pull-right" href="/items/<%=itemList.id%>">View</a>
 
             <div class="col-md-2">
-            Posted By: <%= itemList.postedBy%>
+            Posted By: <%= itemList.postedBy %>
             </div>
 
           </div>
@@ -35,7 +33,7 @@
             <a class="btn btn-default col-md-3 pull-right" href="/items/<%=itemList.id%>" role="button">View</a>
 
             <div class="col-md-2">
-            Posted By: <%= itemList.postedBy%>
+            Posted By: <%= itemList.postedBy %>
             </div>
 
           </div>
@@ -46,7 +44,7 @@
   <% } else { %>
 
     <div class="container-fluid">
-      <a href="/items/add" class= "btn btn-info">Add Item</a>
+      <a href="/items/add/?catId=<%=category._id%>" class= "btn btn-info">Add Item</a>
     </div>
   <% } %>
 

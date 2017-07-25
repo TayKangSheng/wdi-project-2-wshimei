@@ -9,6 +9,7 @@ let itemController = {
       }
       res.render('items/add', {
         allCategories: foundCategories,
+        catId: req.query.catId,
         flash: req.flash('flash')[0]
       })
     })

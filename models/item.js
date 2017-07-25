@@ -3,8 +3,8 @@ const mongoose = require('mongoose')
 var ItemSchema = new mongoose.Schema({
   status: {
     type: String,
-    enum: ['bought', 'unbought'],
-    default: 'unbought'
+    enum: ['Bought', 'Pending'],
+    default: 'Pending'
   },
   name: {type: String, required: [true, 'Item name required']},
   quantity: {type: Number, required: [true, 'Quantity required']},
