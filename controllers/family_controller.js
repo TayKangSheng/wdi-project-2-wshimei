@@ -48,20 +48,18 @@ let familyController = {
   },
 
   show: (req, res, next) => {
-    Family.findById(req.params.id)
-          .populate('Family')
-          .exec(function (err, output) {
-            if (err) {
-              return next(err)
-            }
-            User.find({family: req.params.id}, function (err, foundUsers) {
-              if (err) return next(err)
-              res.render('families/show', {
-                family: output,
-                users: foundUsers
-              })
-            })
-          })
+    Family.findById(req.params.id, function (err, output) {
+      if (err) {
+        return next(err)
+      }
+      User.find({family: req.params.id}, function (err, foundUsers) {
+        if (err) return next(err)
+        res.render('families/show', {
+          family: output,
+          users: foundUsers
+        })
+      })
+    })
   },
 
   edit: (req, res, next) => {
@@ -125,7 +123,15 @@ let familyController = {
       })
       res.redirect(`/families/${req.params.id}`)
     })
+  },
+
+  removeMember: (req, res, next) => {
+    Family.findById(req.params.id, function (err, foundFamily) {
+      if (err) res.send(err)
+      res.send(foundFamily)
+    })
   }
+
 }
 
 module.exports = familyController
