@@ -78,7 +78,6 @@ let categoryController = {
       if (err) {
         return next(err)
       }
-      console.log(output.id)
       res.render('categories/edit', {category: output})
     })
   },
@@ -95,7 +94,6 @@ let categoryController = {
         if (err) {
           return next(err)
         }
-        console.log(updatedCat)
 
         res.redirect('/categories/' + updatedCat.id)
       })

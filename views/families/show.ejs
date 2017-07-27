@@ -1,7 +1,7 @@
 <h3><%= family.name %></h3>
 
-<% if (users.length !== 0) { %>
-  <% users.forEach(function(user) { %>
+<% if (family.users.length !== 0) { %>
+  <% family.users.forEach(function(user) { %>
     <div class="container-fluid list-group-item">
       <div class="row">
         <div class="col-xs-11 col-md-9">
@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-xs-1 col-md-3">
-          <form method="POST" action="/families/<%=user.id%>?_method=DELETE">
+          <form method="POST" action="/families/<%=family.id%>/removeMember?userId=<%=user.id%>">
             <button class="pull-right clearfix btn btn-danger col-md-2" type="submit"><span class="glyphicon glyphicon-minus"></span></button>
           </form>
         </div>

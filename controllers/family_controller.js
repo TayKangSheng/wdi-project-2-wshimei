@@ -48,18 +48,17 @@ let familyController = {
   },
 
   show: (req, res, next) => {
-    Family.findById(req.params.id, function (err, output) {
-      if (err) {
-        return next(err)
-      }
-      User.find({family: req.params.id}, function (err, foundUsers) {
-        if (err) return next(err)
-        res.render('families/show', {
-          family: output,
-          users: foundUsers
-        })
-      })
-    })
+    Family.findById(req.params.id)
+          .populate('users')
+          .exec(function (err, output) {
+            if (err) {
+              return next(err)
+            }
+
+            res.render('families/show', {
+              family: output
+            })
+          })
   },
 
   edit: (req, res, next) => {
@@ -121,6 +120,7 @@ let familyController = {
         foundUser.family.push(foundFamily.id)
         foundUser.save()
       })
+
       res.redirect(`/families/${req.params.id}`)
     })
   },
@@ -128,7 +128,10 @@ let familyController = {
   removeMember: (req, res, next) => {
     Family.findById(req.params.id, function (err, foundFamily) {
       if (err) res.send(err)
-      res.send(foundFamily)
+      foundFamily.users.splice(foundFamily.users.indexOf(req.query.userId), 1)
+      foundFamily.save()
+
+      res.redirect(`/families/${req.params.id}`)
     })
   }
 

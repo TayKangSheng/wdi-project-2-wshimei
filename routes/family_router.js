@@ -12,5 +12,6 @@ router.put('/:id', familyController.update)
 router.delete('/:id', familyController.delete)
 router.get('/:id/addMember', familyController.members)
 router.post('/:id/addMember', familyController.addMember)
+router.post('/:id/removeMember', familyController.removeMember)
 
 module.exports = router

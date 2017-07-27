@@ -75,7 +75,6 @@ let itemController = {
             if (err) {
               return next(err)
             }
-            console.log(foundItem)
             res.render('items/edit', {
           // foundCat: foundCat,
               foundItem: foundItem
@@ -123,6 +122,7 @@ let itemController = {
       }
 
       Category.findById(output.category, function (err, foundCat) {
+        if (err) res.send(err)
         foundCat.items.splice(foundCat.items.indexOf(output.category), 1)
         foundCat.save()
       })
