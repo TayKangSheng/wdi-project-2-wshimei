@@ -1,4 +1,5 @@
-// const User = require('../models/user')
+const User = require('../models/user')
+const Family = require('../models/family')
 const passport = require('passport')
 require('../config/passportConfig')
 
@@ -34,6 +35,21 @@ let userController = {
   logout: (req, res, next) => {
     req.logout()
     res.redirect('/')
+  },
+
+  show: (req, res, next) => {
+    User.findById(req.user.id, function (err, output) {
+      if (err) res.send(err)
+
+      Family.findById(output.family, function (err, foundFamily) {
+        if (err) res.send(err)
+
+        res.render('users/profile', {
+          profile: output,
+          family: foundFamily
+        })
+      })
+    })
   }
 }
 

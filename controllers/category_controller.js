@@ -1,5 +1,5 @@
 const Category = require('../models/category')
-const Item = require('../models/item')
+// const Item = require('../models/item')
 
 let categoryController = {
   new: (req, res, next) => {

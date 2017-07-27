@@ -19,5 +19,6 @@ router.post('/signup', isLoggedIn, userController.create)
 router.get('/login', isLoggedIn, userController.loginPage)
 router.post('/login', isLoggedIn, userController.login)
 router.get('/logout', userController.logout)
+router.get('/profile', userController.show)
 
 module.exports = router

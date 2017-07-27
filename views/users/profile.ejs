@@ -1,0 +1,26 @@
+<h3>Profile</h3>
+
+<p>Email:
+  <%=profile.local.email%>
+</p>
+<p>Nickname:
+  <%=profile.local.nickname%>
+</p>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <% if (profile.family.length === 1) { %>
+      <h4>Family:</h4>
+      <button type="button" class="btn btn-default btn-lg" href="families/show/<%=family.id%>"><%=family.name%></button>
+    <% } else { %>
+      <h4>Families:</h4>
+      <% family.forEach(function(family) { %>
+          <button type="button" class="btn btn-default btn-lg" href="families/show/<%=family.id%>"><%=family.name%></button>
+      <% }) %>
+    <% } %>
+  </div>
+</div>
+
+<%# add family member if creator%>
+
+  <%# create family button %>
