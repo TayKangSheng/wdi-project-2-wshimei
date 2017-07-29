@@ -12,14 +12,15 @@
     <% if (profile.family.length === 1) { %>
       <h4>Family:</h4>
       <a type="button" class="btn btn-default btn-lg" href="/families/<%=family.id%>"><%=family.name%></a>
-    <% } else { %>
+    <% } else if ((profile.family.length > 1)){ %>
       <h4>Families:</h4>
       <% family.forEach(function(family) { %>
           <a type="button" class="btn btn-default btn-lg" href="/families/<%=family.id%>"><%=family.name%></a>
       <% }) %>
-    <% } %>
+    <% } else { %>
     <div class="">
       <a href="/families/new" class="btn btn-info btn-md">Create New Family</a>
     </div>
+    <% } %>
   </div>
 </div>

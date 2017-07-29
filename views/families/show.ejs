@@ -39,9 +39,9 @@
 
 <div class="container-fluid">
 
-  <a href="/families/<%=family.users%>/edit" class="btn btn-info col-md-2">Edit Family</a>
+  <a href="/families/<%=family.id%>/edit" class="btn btn-info col-md-2">Edit Family</a>
 
-  <form method="POST" action="/families/<%=family.users%>?_method=DELETE">
+  <form method="POST" action="/families/<%=family.id%>?_method=DELETE">
     <button class="btn btn-danger col-md-2" type="submit">Delete Family</button>
   </form>
 

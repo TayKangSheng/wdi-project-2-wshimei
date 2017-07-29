@@ -1,5 +1,6 @@
 const Family = require('../models/family')
 const User = require('../models/user')
+// const mongoose = require('mongoose')
 
 let familyController = {
   new: (req, res, next) => {
@@ -28,7 +29,14 @@ let familyController = {
         return next(err)
       }
 
-      res.redirect('/families/list')
+      User.findById(req.user, function (err, foundUser) {
+        if (err) res.send(err)
+        output.users.push(foundUser.id)
+        output.save()
+        foundUser.family.push(output.id)
+        foundUser.save()
+        res.redirect('/families/list')
+      })
     })
   },
 
@@ -93,6 +101,14 @@ let familyController = {
       req.flash('flash', {
         type: 'warning',
         message: 'Deleted a family'
+      })
+
+      output.users.forEach(function (user) {
+        User.findById(user, function (err, foundUsers) {
+          if (err) res.send(err)
+          foundUsers.family.splice((foundUsers.family.indexOf(foundUsers.family)), 1)
+          foundUsers.save()
+        })
       })
       res.redirect('/families/list')
     })
