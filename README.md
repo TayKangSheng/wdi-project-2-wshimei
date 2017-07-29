@@ -5,7 +5,7 @@ A small group shopping list designed for groups such as family, room-mates, clos
 
 ## Live Version
 
-[Heroku](https://cryptic-peak-63193.herokuapp.com/)
+[Heroku](https://mylazyshoppinglist.herokuapp.com/)
 
 ## Built With
 
