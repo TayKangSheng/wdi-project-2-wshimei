@@ -1,10 +1,20 @@
 const Category = require('../models/category')
+const Family = require('../models/family')
+const User = require('../models/user')
 // const Item = require('../models/item')
 
 let categoryController = {
   new: (req, res, next) => {
-    res.render('categories/new', {
-      flash: req.flash('flash')[0]
+    User
+    .findById(req.user.id)
+    .populate('family')
+    .exec(function (err, data) {
+      if (err) return res.send('err')
+
+      res.render('categories/new', {
+        user: data,
+        flash: req.flash('flash')[0]
+      })
     })
   },
 
@@ -35,15 +45,17 @@ let categoryController = {
   list: (req, res, next) => {
     if (req.user.family.length > 1) {
       // for (var i = 0; i < res.locals.user.family.length; i++) {
-      Category.find({}, function (err, output) {
-        if (err) {
-          return next(err)
-        }
-        res.render('categories/list', {
-          categories: output,
-          flash: req.flash('flash')[0]
-        })
-      })
+      Category.find({})
+              .populate('family')
+              .exec(function (err, output) {
+                if (err) {
+                  return next(err)
+                }
+                res.render('categories/list', {
+                  categories: output,
+                  flash: req.flash('flash')[0]
+                })
+              })
       // }
     } else {
       Category.find({family: req.user.family}, function (err, output) {

@@ -45,9 +45,10 @@ let familyController = {
       if (err) {
         return next(err)
       }
-      if (req.user.family.length > 1) {
-        res.render('families/list', {families: output})
-      } else if (req.user.family.length === 0) {
+      // if (req.user.family.length > 1) {
+      //   res.render('families/list', {families: output})
+      // } else
+      if (req.user.family.length === 0) {
         res.redirect('/families/new')
       } else {
         res.redirect('/categories/list')
@@ -103,14 +104,23 @@ let familyController = {
         message: 'Deleted a family'
       })
 
-      output.users.forEach(function (user) {
-        User.findById(user, function (err, foundUsers) {
+      if (output.users.length > 1) {
+        output.users.forEach(function (user) {
+          User.findById(user, function (err, foundUsers) {
+            if (err) res.send(err)
+            foundUsers.family.splice((foundUsers.family.indexOf(foundUsers.family)), 1)
+            foundUsers.save()
+          })
+        })
+        res.redirect('/')
+      } else {
+        User.findById(output.users, function (err, foundUsers) {
           if (err) res.send(err)
           foundUsers.family.splice((foundUsers.family.indexOf(foundUsers.family)), 1)
           foundUsers.save()
         })
-      })
-      res.redirect('/families/list')
+        res.redirect('/')
+      }
     })
   },
 

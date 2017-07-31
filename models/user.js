@@ -7,7 +7,7 @@ var UserSchema = new mongoose.Schema({
     nickname: {type: String, required: [true, 'Please provide a nickname']},
     password: {type: String, required: [true, 'Password required']}
   },
-  family: [{type: mongoose.Schema.Types.ObjectId, ref: 'family'}]
+  family: [{type: mongoose.Schema.Types.ObjectId, ref: 'Family'}]
 })
 
 UserSchema.statics.encrypt = function (password) {
