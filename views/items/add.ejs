@@ -26,7 +26,9 @@
 
   <div class = "form-group">
       <label>Categories</label>
+
       <ul>
+        <% if (user.family.length === 1) {%>
         <% allCategories.forEach(category => { %>
 
           <% if (category.family.id == user.family) { %>
@@ -43,6 +45,27 @@
             <% } %>
           <% } %>
         <%})%>
+        <% } else { %>
+          <% user.family.forEach(function(familyId) { %>
+            <% allCategories.forEach(category => { %>
+
+              <% if (category.family.id == familyId) { %>
+                <% if (category.id === catId) { %>
+                  <li>
+                    <input type="radio" name="id" value="<%=category.id%>" checked>
+                    <%= category.name %> <small style="color:grey"> <%=category.family.name%> </small>
+                  </li>
+                <% } else { %>
+                  <li>
+                    <input type="radio" name="id" value="<%=category.id%>">
+                    <%= category.name %> <small style="color:grey"> <%=category.family.name%> </small>
+                  </li>
+                <% } %>
+              <% } %>
+            <%})%>
+
+        <% })%>
+        <% } %>
 
         <li><a href="/categories/new">New Category</a></li>
       </ul>
