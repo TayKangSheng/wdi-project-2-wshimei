@@ -38,18 +38,15 @@ let userController = {
   },
 
   show: (req, res, next) => {
-    User.findById(req.user.id, function (err, output) {
-      if (err) res.send(err)
+    User.findById(req.user.id)
+        .populate('family')
+        .exec(function (err, output) {
+          if (err) res.send(err)
 
-      Family.findById(output.family, function (err, foundFamily) {
-        if (err) res.send(err)
-
-        res.render('users/profile', {
-          profile: output,
-          family: foundFamily
+          res.render('users/profile', {
+            user: output
+          })
         })
-      })
-    })
   }
 }
 
