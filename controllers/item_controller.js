@@ -3,16 +3,18 @@ const Category = require('../models/category')
 
 let itemController = {
   new: (req, res, next) => {
-    Category.find({}, function (err, foundCategories) {
-      if (err) {
-        return next(err)
-      }
-      res.render('items/add', {
-        allCategories: foundCategories,
-        catId: req.query.catId,
-        flash: req.flash('flash')[0]
-      })
-    })
+    Category.find({})
+            .populate('family')
+            .exec(function (err, foundCategories) {
+              if (err) {
+                return next(err)
+              }
+              res.render('items/add', {
+                allCategories: foundCategories,
+                catId: req.query.catId,
+                flash: req.flash('flash')[0]
+              })
+            })
   },
 
   create: (req, res, next) => {

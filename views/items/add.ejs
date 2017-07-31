@@ -25,32 +25,33 @@
   </div>
 
   <div class = "form-group">
-        <label>Categories</label>
+      <label>Categories</label>
+      <ul>
+        <% allCategories.forEach(category => { %>
 
-        <ul>
-          <% allCategories.forEach(category => { %>
-
+          <% if (category.family.id == user.family) { %>
             <% if (category.id === catId) { %>
-                <li>
-                  <input type="radio" name="id" value="<%=category.id%>" checked>
-                  <%= category.name %>
-                </li>
-              <% } else { %>
-                <li>
-                  <input type="radio" name="id" value="<%=category.id%>">
-                  <%= category.name %>
-                </li>
-                <% } %>
-          <%})%>
+              <li>
+                <input type="radio" name="id" value="<%=category.id%>" checked>
+                <%= category.name %>
+              </li>
+            <% } else { %>
+              <li>
+                <input type="radio" name="id" value="<%=category.id%>">
+                <%= category.name %>
+              </li>
+            <% } %>
+          <% } %>
+        <%})%>
 
-          <li><a href="/categories/new">New Category</a></li>
-        </ul>
-      </div>
+        <li><a href="/categories/new">New Category</a></li>
+      </ul>
+    </div>
 
-      <div class="form-group">
-        <label for="postedBy">Posted By: </label>
-        <input type="text" name="postedBy" id="postedBy" value="<%=user.local.nickname%>" readonly>
-      </div>
+    <div class="form-group">
+      <label for="postedBy">Posted By: </label>
+      <input type="text" name="postedBy" id="postedBy" value="<%=user.local.nickname%>" readonly>
+    </div>
 
   <input type="submit" class="btn btn-info">
 </form>
