@@ -8,7 +8,6 @@
     <input type="text" class="form-control" name="name" id="name">
   </div>
 
-
   <%# <div class="form-group">
     <label for="color">Color</label>
     <input type="text" class="form-control" name="color" id="color">
@@ -17,7 +16,7 @@
 
 <% if (user.family.length === 1) { %>
   <div class="form-group">
-    <input type="text" class="form-control hidden" name="family" id="family" value="<%=user.family%>">
+    <input type="text" class="form-control hidden" name="family" id="family" value="<%=user.family[0].id%>">
   </div>
 <% } else { %>
 
