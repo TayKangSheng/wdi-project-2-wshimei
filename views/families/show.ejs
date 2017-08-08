@@ -8,11 +8,13 @@
           <%= user.local.nickname %>
         </div>
 
+        <% if (family.creator === locals.user.local.email) { %>
         <div class="col-xs-1 col-md-3">
           <form method="POST" action="/families/<%=family.id%>/removeMember?userId=<%=user.id%>">
             <button class="pull-right clearfix btn btn-danger col-md-2" type="submit"><span class="glyphicon glyphicon-minus"></span></button>
           </form>
         </div>
+        <% } %>
       </div>
     </div>
   <% }) %>
