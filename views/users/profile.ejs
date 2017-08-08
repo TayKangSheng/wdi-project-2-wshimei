@@ -11,8 +11,10 @@
   <div class="panel-body">
     <% if (user.family.length === 1) { %>
       <h4>Family:</h4>
-      <a type="button" class="btn btn-default btn-lg" href="/families/<%=family.id%>"><%=family.name%></a>
-    <% } else if ((user.family.length > 1)){ %>
+      <% user.family.forEach(function(family) { %>
+        <a type="button" class="btn btn-default btn-lg" href="/families/<%=family.id%>"><%=family.name%></a>
+      <% }) %>
+    <% } else if (user.family.length > 1){ %>
       <h4>Families:</h4>
       <% user.family.forEach(function(family) { %>
           <a type="button" class="btn btn-default btn-lg" href="/families/<%=family.id%>"><%=family.name%></a>
